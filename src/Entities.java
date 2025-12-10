@@ -4,7 +4,7 @@ import javax.swing.ImageIcon;
 public class Entities {
 
     private int x, y, dx, dy, w, h;
-    private String s, iL, iR; 
+    private String s, iL, iR, wL, wR; 
 
     public Entities (){
    
@@ -19,7 +19,7 @@ public class Entities {
         h = height;
     }
 
-    public Entities (int x1, int y1, int dx1, int dy1, int width, int height, String sprite, String idleL, String idleR){
+    public Entities (int x1, int y1, int dx1, int dy1, int width, int height, String sprite, String idleL, String idleR, String walkL, String walkR){
         x = x1;
         y = y1;
         dx = dx1;
@@ -29,6 +29,8 @@ public class Entities {
         s = sprite;
         iL = idleL;
         iR = idleR;
+        wL = walkL;
+        wR = walkR;
     }
 
     public void drawEnt(Graphics g2d){
@@ -110,6 +112,22 @@ public class Entities {
 
     public void setiR(String iR) {
         this.iR = iR;
+    }
+
+    public String getwL() {
+        return wL;
+    }
+
+    public void setwL(String wL) {
+        this.wL = wL;
+    }
+
+    public String getwR() {
+        return wR;
+    }
+
+    public void setwR(String wR) {
+        this.wR = wR;
     }
 
     

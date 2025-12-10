@@ -10,7 +10,7 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 	
 	private BufferedImage back; 
 	private int key, x, y, hi, wi; 
-	private Blythe blythe;
+	private Blythe b;
 	
 	
 
@@ -26,7 +26,7 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 		key =-1; 
 		x=0;
 		y=0;
-		blythe = new Blythe(200,200);
+		b = new Blythe(200,200);
 	}
 
 	// setting arraylists
@@ -79,8 +79,8 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 
 
 	private void drawScreens(Graphics g2d){
-		blythe.drawEnt(g2d);
-		blythe.moveEnt();
+		b.drawEnt(g2d);
+		b.moveEnt();
 
 	}
 
@@ -112,15 +112,17 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 		
 		// System.out.println(testDialogue.isaChoosing());
 		if (key == 87){ // W
-			blythe.setDy(-1);
+			b.setDy(-1);
 
 		} else if (key == 83){ // S
-			blythe.setDy(1);
+			b.setDy(1);
 		} else if (key == 65){ // A
-			blythe.setDx(-1);
+			b.setDx(-1);
+			b.setS(b.getwL());
 
 		} else if (key == 68){ // D
-			blythe.setDx(1);
+			b.setDx(1);
+			b.setS(b.getwR());
 		}
 			
 
@@ -138,12 +140,21 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// player movement
-
-		if (key == 87 || key == 83 || key == 65 || key == 68){
-			blythe.setDy(0);
-			blythe.setDx(0);
-
-		} 
+		b.setDy(0);
+		b.setDx(0);
+		
+		if ( key == 65 ){
+			b.setS(b.getiL());
+		} else if (key == 68){
+			b.setS(b.getiR());
+		} else if (key == 87 || key == 83){
+			if (b.getS()==b.getwL()){
+				b.setS(b.getiL());
+			} 
+			else if (b.getS()==b.getwR()){
+				b.setS(b.getiR());
+			} 
+		}
 	}
 
 
