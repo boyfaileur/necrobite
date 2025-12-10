@@ -35,5 +35,82 @@ public class Entities {
         g2d.drawImage(new ImageIcon(s).getImage(), x, y, w, h, null);
     }
 
+    public void moveEnt(){
+        x += dx;
+        y += dy;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getDx() {
+        return dx;
+    }
+
+    public void setDx(int dx) {
+        this.dx = dx;
+    }
+
+    public int getDy() {
+        return dy;
+    }
+
+    public void setDy(int dy) {
+        this.dy = dy;
+    }
+
+    public int getW() {
+        return w;
+    }
+
+    public void setW(int w) {
+        this.w = w;
+    }
+
+    public int getH() {
+        return h;
+    }
+
+    public void setH(int h) {
+        this.h = h;
+    }
+
+    public String getS() {
+        return s;
+    }
+
+    public void setS(String s) {
+        this.s = s;
+    }
+
+    public String getiL() {
+        return iL;
+    }
+
+    public void setiL(String iL) {
+        this.iL = iL;
+    }
+
+    public String getiR() {
+        return iR;
+    }
+
+    public void setiR(String iR) {
+        this.iR = iR;
+    }
+
     
 }

@@ -80,6 +80,7 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 
 	private void drawScreens(Graphics g2d){
 		blythe.drawEnt(g2d);
+		blythe.moveEnt();
 
 	}
 
@@ -98,11 +99,31 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 //DO NOT DELETE
 	@Override
 	public void keyPressed(KeyEvent e) {
+		System.out.println(blythe.getDx() + " " + blythe.getDy());
+
 		// TODO Auto-generated method stub
+
+		// 87 w
+		// 65 a
+		// 83 s
+		// 68 d
+
+		
 		
 		key= e.getKeyCode();
 		System.out.println(key);
 		// System.out.println(testDialogue.isaChoosing());
+		if (key == 87){ // W
+			blythe.setDy(-1);
+
+		} else if (key == 83){ // S
+			blythe.setDy(1);
+		} else if (key == 65){ // A
+			blythe.setDx(-1);
+
+		} else if (key == 68){ // D
+			blythe.setDx(1);
+		}
 			
 
 
@@ -118,8 +139,18 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 	//DO NOT DELETE
 	@Override
 	public void keyReleased(KeyEvent e) {
+		System.out.println(blythe.getDx() + " " + blythe.getDy());
+
 		
 		// player movement
+
+		if (key == 87 || key == 83){
+			blythe.setDy(0);
+
+		} else if (key == 65 || key == 68){
+			blythe.setDx(0);
+			
+		}
 		
 		
 		
