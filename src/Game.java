@@ -9,7 +9,7 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 
 	
 	private BufferedImage back; 
-	private int key, x, y, invsel, hi, wi; 
+	private int key, x, y, hi, wi; 
 	private Blythe blythe;
 	
 	
@@ -139,18 +139,11 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 	public void keyReleased(KeyEvent e) {
 		// player movement
 
-		if (key == 87 || key == 83){
+		if (key == 87 || key == 83 || key == 65 || key == 68){
 			blythe.setDy(0);
-
-		} else if (key == 65 || key == 68){
 			blythe.setDx(0);
-			
-		}
-		
-		
-		
-		
-		
+
+		} 
 	}
 
 
