@@ -99,9 +99,8 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 //DO NOT DELETE
 	@Override
 	public void keyPressed(KeyEvent e) {
-		System.out.println(blythe.getDx() + " " + blythe.getDy());
-
-		// TODO Auto-generated method stub
+		key= e.getKeyCode();
+		System.out.println(key);
 
 		// 87 w
 		// 65 a
@@ -110,8 +109,7 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 
 		
 		
-		key= e.getKeyCode();
-		System.out.println(key);
+		
 		// System.out.println(testDialogue.isaChoosing());
 		if (key == 87){ // W
 			blythe.setDy(-1);
@@ -139,9 +137,6 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 	//DO NOT DELETE
 	@Override
 	public void keyReleased(KeyEvent e) {
-		System.out.println(blythe.getDx() + " " + blythe.getDy());
-
-		
 		// player movement
 
 		if (key == 87 || key == 83){
