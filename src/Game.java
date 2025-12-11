@@ -112,16 +112,16 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 		
 		// System.out.println(testDialogue.isaChoosing());
 		if (key == 87){ // W
-			b.setDy(-1);
+			b.setDy(-2);
 
 		} else if (key == 83){ // S
-			b.setDy(1);
+			b.setDy(2);
 		} else if (key == 65){ // A
-			b.setDx(-1);
+			b.setDx(-2);
 			b.setS(b.getwL());
 
 		} else if (key == 68){ // D
-			b.setDx(1);
+			b.setDx(2);
 			b.setS(b.getwR());
 		}
 			
@@ -142,7 +142,7 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 		// player movement
 		b.setDy(0);
 		b.setDx(0);
-		
+
 		if ( key == 65 ){
 			b.setS(b.getiL());
 		} else if (key == 68){
