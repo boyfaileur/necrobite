@@ -118,6 +118,7 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 			}
 			
 			active.get(i).drawEnt(g2d);
+			b.proximity(g2d, active.get(i));
 		}
 	}
 
@@ -139,7 +140,7 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 	}
 
 	public void sculpting(){
-		
+
 	}
 
 	
