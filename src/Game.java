@@ -2,6 +2,8 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+
 import javax.swing.*; 
 
 
@@ -10,26 +12,53 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 	
 	private BufferedImage back; 
 	private int key, x, y, hi, wi; 
+
+	private String screen;
+
+	// lists
+	private ArrayList <Entities> active;
+
+
+	// entities
 	private Blythe b;
+	private Fern f; 
 	
 	
 
 	
 	public Game() {
 
+		// setup
 		wi = Toolkit.getDefaultToolkit().getScreenSize().width;
         hi = Toolkit.getDefaultToolkit().getScreenSize().height;
 		new Thread(this).start();	
 		this.addKeyListener(this);
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
+		screen = "studio";
+
+		// ints
 		key =-1; 
 		x=0;
 		y=0;
+
+		//lists
+		active = setActive();
+
+		// entities
 		b = new Blythe(200,200);
+		f = new Fern(400, 400);
+		
 	}
 
 	// setting arraylists
+
+	public ArrayList<Entities> setActive(){
+		ArrayList<Entities> temp = new ArrayList<Entities>();
+		temp.add(b);
+		temp.add(f);
+		return temp;
+	}
 
 
 	// you can probably set the characters and stuff in backgrounds
@@ -69,20 +98,51 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 		
 	
 		drawScreens(g2d);
+		setup(g2d);
 	
 		
 		twoDgraph.drawImage(back, null, 0, 0);
 
 	}
 
-	// methods
+	// setup
 
+	public void setup(Graphics g2d){
+		b.moveEnt();	
+
+		// drawing entities
+		for (int i = 0; i < active.size(); i++) {
+
+			if (active.get(i) == null){
+				active = setActive();
+			}
+			
+			active.get(i).drawEnt(g2d);
+		}
+	}
 
 	private void drawScreens(Graphics g2d){
-		b.drawEnt(g2d);
-		b.moveEnt();
+
+		switch (screen){
+			case "studio":
+			studio();
+			break;
+		}
+		
 
 	}
+
+	// different screens
+
+	public void studio(){
+
+	}
+
+	public void sculpting(){
+		
+	}
+
+	
 
 
 	

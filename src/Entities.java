@@ -24,8 +24,8 @@ public class Entities {
         y = y1;
         dx = dx1;
         dy = dy1;
-        w = width*2;
-        h = height*2;
+        w = width;
+        h = height;
         s = sprite;
         iL = idleL;
         iR = idleR;
