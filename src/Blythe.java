@@ -40,11 +40,9 @@ public class Blythe extends Entities{
             if((top > etop -50 && bottom < ebottom +40)
                 && ((left < eright +15)
                 && (right > eleft -15))){
-                    g2d.drawImage(new ImageIcon("assets/stickers/eSticker.png").getImage(), 200, 200 ,200, 200, null);
-                    System.out.println("in proximity with " + e.getS());
+                    g2d.drawImage(new ImageIcon("assets/stickers/eSticker.png").getImage(), (e.getX()+(e.getW()/2)-13), (e.getY()+(e.getH()/2))+13 ,26, 26, null);
                     temp = true;
             }else {
-                System.out.println("not in proximity with " + e.getS());
                 temp = false;
             }
            
