@@ -197,6 +197,11 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 			b.setDx(1);
 			b.setS(b.getwR());
 		}
+
+
+		if (key == 69){ // E
+			b.setT(true);
+		}
 			
 
 
@@ -227,6 +232,10 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 			else if (b.getS()==b.getwR()){
 				b.setS(b.getiR());
 			} 
+		}
+
+		if (key == 69){ // E
+			b.setT(false);
 		}
 	}
 

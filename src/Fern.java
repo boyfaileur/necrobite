@@ -10,7 +10,8 @@ public class Fern extends Entities{
             "assets/characters/placeholders/phEnt.png", 
             "assets/characters/placeholders/phEnt.png",
             "assets/characters/placeholders/phEnt.png",
-            "assets/characters/placeholders/phEnt.png");
+            "assets/characters/placeholders/phEnt.png", 
+            true, false);
     }
     
 }

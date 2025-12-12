@@ -19,7 +19,8 @@ public class Blythe extends Entities{
             "assets/characters/blythe/bIdleL.gif", 
             "assets/characters/blythe/bIdleR.gif",
             "assets/characters/blythe/bWalkL.gif",
-            "assets/characters/blythe/bWalkR.gif");
+            "assets/characters/blythe/bWalkR.gif",
+            false);
             
     }
 
@@ -29,7 +30,7 @@ public class Blythe extends Entities{
 
         boolean temp;
         
-        if (!(e instanceof Blythe)){
+        if (!(e instanceof Blythe)&&(e instanceof Entities)){
             int etop = e.getY();
             int ebottom = e.getY()+e.getH();
             int eleft = e.getX();
@@ -39,7 +40,15 @@ public class Blythe extends Entities{
             if((top > etop -50 && bottom < ebottom +40)
                 && ((left < eright +15)
                 && (right > eleft -15))){
-                    g2d.drawImage(new ImageIcon("assets/stickers/eSticker.png").getImage(), (e.getX()+(e.getW()/2)-13), (e.getY()+(e.getH()/2))+18 ,26, 26, null);
+
+                    if (this.isT()){
+                        e.setA(false);
+                        e.setT(true);
+                    }
+                    if (e.isA()){
+                        g2d.drawImage(new ImageIcon("assets/stickers/eSticker.png").getImage(), (e.getX()+(e.getW()/2)-13), (e.getY()+(e.getH()/2))+18 ,26, 26, null);
+                   
+                    }
                     temp = true;
             }else {
                 temp = false;
