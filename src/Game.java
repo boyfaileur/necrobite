@@ -15,7 +15,7 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 
 	
 	private BufferedImage back; 
-	private int key, x, y, hi, wi; 
+	private int key, x, y, hi, wi, rem; 
 
 	private String screen, speaker;
 
@@ -148,6 +148,8 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 				active = setActive();
 			}
 
+			
+
 			for (int j = 0; j < active.size(); j++){
 				if ((active.get(i).getH()+active.get(i).getY()>
 				active.get(j).getH()+active.get(j).getY())&&(i<j)){
@@ -160,35 +162,56 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 
 			active.get(i).drawEnt(g2d);
 			b.proximity(g2d, active.get(i));
-			dialogue(g2d);
+
+			if (!(active.get(i) instanceof Blythe)){
+				Entities e = active.get(i);
+				
+				
+				if (e.isT()){
+
+					g2d.drawImage(new ImageIcon("assets/boxes/silverdbox.png").getImage(), ((wi/2) - 350), (hi - 258), 350*2, 108*2,this);
+
+					g2d.setColor(Color.BLACK);
+					if (dialogueList==null){
+						setDialogue();
+						
+					} 
+
+					if (dialogueList.size()<=1){
+						e.setT(false);
+					}
+						setSpeaker();
+						g2d.drawString((dialogueList.get(0)), b.getX(), b.getY());
+					}
+					
+			}
 		}
 	}
 
-	private void dialogue(Graphics g2d){
+	private void setDialogue(){
 		for (int i = 0; i < active.size(); i++) {
 
 			if (!(active.get(i) instanceof Blythe)){
 				Entities e = active.get(i);
 				String speaker = "";
 				if (e.isT()){
-				g2d.drawImage(new ImageIcon("assets/boxes/silverdbox.png").getImage(), ((wi/2) - 350), (hi - 258), 350*2, 108*2,this);
 				
 				String cD = e.getdF();
 				dialogueList = setDialogue(cD); // setting the dialogue file
 				// at this point, the name is still attached to the sentence
-
-				for (int j = 0; j < active.size(); j++) {
-					speaker = setSpeaker(active.get(j), dialogueList); // this removes the speaker from the beginning of the line
-
-				}
 				
-				g2d.setColor(Color.BLACK);
-				g2d.drawString((dialogueList.get(0)), b.getX(), b.getY());
-
-
 			}
 			}
 			
+		}
+	}
+
+	public void setSpeaker(){
+		if (dialogueList.size()>0){
+			for (int j = 0; j < active.size(); j++) {
+				speaker = setSpeaker(active.get(j), dialogueList); // this removes the speaker from the beginning of the line
+
+			}	
 		}
 	}
 
@@ -273,12 +296,9 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 
 		if (key == 69){ // E
 			b.setT(true);
+			setDialogue();
 		}
 			
-
-
-
-
 		// player movement
 		
 
@@ -309,6 +329,14 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 		if (key == 69){ // E
 			b.setT(false);
 		}
+
+		if (key == 32){
+			if (dialogueList.size()>0){
+				dialogueList.remove(0);
+			}
+			
+		}
+
 	}
 
 
