@@ -4,11 +4,16 @@ import javax.swing.ImageIcon;
 public class Entities {
 
     private int x, y, dx, dy, w, h;
-    private String s, iL, iR, wL, wR; 
+    private String s, iL, iR, wL, wR, n; 
     private boolean a, t;
+    private String dF;
 
     public Entities (){
    
+    }
+
+    public Entities(String dialogueFile){
+        dF = dialogueFile;
     }
 
     public Entities (int x1, int y1, int dx1, int dy1, int width, int height){
@@ -20,7 +25,8 @@ public class Entities {
         h = height;
     }
 
-    public Entities (int x1, int y1, int dx1, int dy1, int width, int height, String sprite, String idleL, String idleR, String walkL, String walkR, boolean talking){
+    public Entities (String name, int x1, int y1, int dx1, int dy1, int width, int height, String sprite, String idleL, String idleR, String walkL, String walkR, boolean talking){
+        n = name;
         x = x1;
         y = y1;
         dx = dx1;
@@ -50,6 +56,25 @@ public class Entities {
         wR = walkR;
         a = available;
         t = talking;
+    }
+
+    public Entities (String name, int x1, int y1, int dx1, int dy1, int width, int height, String sprite, String idleL, String idleR, String walkL, String walkR, boolean available, boolean talking, String dialogueFile){
+        n = name;
+        x = x1;
+        y = y1;
+        dx = dx1;
+        dy = dy1;
+        w = width;
+        h = height;
+        s = sprite;
+        iL = idleL;
+        iR = idleR;
+        wL = walkL;
+        wR = walkR;
+        a = available;
+        t = talking;
+        dF = dialogueFile;
+
     }
 
     public void drawEnt(Graphics g2d){
@@ -163,6 +188,22 @@ public class Entities {
 
     public void setT(boolean t) {
         this.t = t;
+    }
+
+    public String getdF() {
+        return dF;
+    }
+
+    public void setdF(String dF) {
+        this.dF = dF;
+    }
+
+    public String getN() {
+        return n;
+    }
+
+    public void setN(String n) {
+        this.n = n;
     }
 
     

@@ -2,8 +2,11 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Scanner;
 
 import javax.swing.*; 
 
@@ -14,10 +17,11 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 	private BufferedImage back; 
 	private int key, x, y, hi, wi; 
 
-	private String screen;
+	private String screen, speaker;
 
 	// lists
 	private ArrayList <Entities> active;
+	private ArrayList<String> dialogueList;
 
 
 	// entities
@@ -31,11 +35,14 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 
 		// setup
 		
+		
 		new Thread(this).start();	
 		this.addKeyListener(this);
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
 		screen = "studio";
+		wi = Toolkit.getDefaultToolkit().getScreenSize().width;
+        hi = Toolkit.getDefaultToolkit().getScreenSize().height;
 
 		// ints
 		key =-1; 
@@ -48,10 +55,34 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 		// entities
 		b = new Blythe(200,200);
 		f = new Fern(400, 400);
+
+		
 		
 	}
 
 	// setting arraylists
+
+	public ArrayList<String> setDialogue(String dialogueFile){ // setting up the dialogue file
+		ArrayList<String> temp = new ArrayList<String>();
+		File file = new File(dialogueFile);
+
+		Scanner scan;
+        try {
+            scan = new Scanner(file);
+
+            while(scan.hasNextLine()){  
+                String word = scan.nextLine();
+                temp.add(word);
+            }
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        temp.add(" ");
+
+		return temp;
+	}
 
 	public ArrayList<Entities> setActive(){
 		ArrayList<Entities> temp = new ArrayList<Entities>();
@@ -123,15 +154,54 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 					System.out.println("supposed to swap");
 					Collections.swap(active, i, j);
 				} 
-				// else if (active.get(i).getH()+active.get(i).getY()<
-				// active.get(j).getH()+active.get(j).getY()&&(active.indexOf(i)>active.indexOf(j))) {
-				// 	Collections.swap(active, i, j);
-				// }
+				
 			}
 			
+
 			active.get(i).drawEnt(g2d);
 			b.proximity(g2d, active.get(i));
+			dialogue(g2d);
 		}
+	}
+
+	private void dialogue(Graphics g2d){
+		for (int i = 0; i < active.size(); i++) {
+
+			if (!(active.get(i) instanceof Blythe)){
+				Entities e = active.get(i);
+				String speaker = "";
+				if (e.isT()){
+				g2d.drawImage(new ImageIcon("assets/boxes/silverdbox.png").getImage(), ((wi/2) - 350), (hi - 258), 350*2, 108*2,this);
+				
+				String cD = e.getdF();
+				dialogueList = setDialogue(cD); // setting the dialogue file
+				// at this point, the name is still attached to the sentence
+
+				for (int j = 0; j < active.size(); j++) {
+					speaker = setSpeaker(active.get(j), dialogueList); // this removes the speaker from the beginning of the line
+
+				}
+				
+				g2d.setColor(Color.BLACK);
+				g2d.drawString((dialogueList.get(0)), b.getX(), b.getY());
+
+
+			}
+			}
+			
+		}
+	}
+
+	private String setSpeaker(Entities e, ArrayList<String> dialogueList){
+		String currentLine = dialogueList.get(0);
+		String temp;
+		if (currentLine.startsWith(e.getN())){
+			temp = e.getN();
+			dialogueList.set(0,currentLine.replace(e.getN(), ""));
+		} else {
+			temp = "";
+		}
+		return temp;
 	}
 
 	private void drawScreens(Graphics g2d){
@@ -154,6 +224,8 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 	public void sculpting(){
 
 	}
+
+	// other 
 
 	
 
