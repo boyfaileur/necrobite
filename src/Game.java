@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.swing.*; 
 
@@ -114,6 +115,18 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 
 			if (active.get(i) == null){
 				active = setActive();
+			}
+
+			for (int j = 0; j < active.size(); j++){
+				if ((active.get(i).getH()+active.get(i).getY()>
+				active.get(j).getH()+active.get(j).getY())&&(i<j)){
+					System.out.println("supposed to swap");
+					Collections.swap(active, i, j);
+				} 
+				// else if (active.get(i).getH()+active.get(i).getY()<
+				// active.get(j).getH()+active.get(j).getY()&&(active.indexOf(i)>active.indexOf(j))) {
+				// 	Collections.swap(active, i, j);
+				// }
 			}
 			
 			active.get(i).drawEnt(g2d);
