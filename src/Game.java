@@ -121,8 +121,8 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 		g2d.clearRect(0,0,getSize().width, getSize().height);
 
 		// Set the font to be used for the dialogue text (example font)
-		Font font = new Font("Arial", Font.PLAIN, 35);
-		g2d.setFont(font);
+		g2d.setFont(new Font("Jersey 10", Font.PLAIN, 35)); 
+
 	
 		// Get the FontMetrics for the current font
 		FontMetrics fm = g2d.getFontMetrics();
@@ -171,7 +171,7 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 
 					g2d.drawImage(new ImageIcon("assets/boxes/silverdbox.png").getImage(), ((wi/2) - 350), (hi - 258), 350*2, 108*2,this);
 
-					g2d.setColor(Color.BLACK);
+					g2d.setColor(Color.WHITE);
 					if (dialogueList==null){
 						setDialogue();
 						
@@ -179,9 +179,11 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 
 					if (dialogueList.size()<=1){
 						e.setT(false);
+						e.setA(true);
 					}
 						setSpeaker();
-						g2d.drawString((dialogueList.get(0)), b.getX(), b.getY());
+						g2d.drawString(speaker, (wi/2) - 325, hi - 200);
+						g2d.drawString((dialogueList.get(0)), (wi/2) - 325, (hi - 180));
 					}
 					
 			}
@@ -193,7 +195,6 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 
 			if (!(active.get(i) instanceof Blythe)){
 				Entities e = active.get(i);
-				String speaker = "";
 				if (e.isT()){
 				
 				String cD = e.getdF();
