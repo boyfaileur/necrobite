@@ -48,7 +48,7 @@ public class Blythe extends Entities{
                         e.setT(true);
                     }
                     if (e.isA()){
-                        g2d.drawImage(new ImageIcon("assets/stickers/eSticker.png").getImage(), (e.getX()+(e.getW()/2)-13), (e.getY()+(e.getH()/2))+18 ,26, 26, null);
+                        g2d.drawImage(new ImageIcon("assets/stickers/eSticker.png").getImage(), (e.getX()+(e.getW()/2)+5), (e.getY()+(e.getH()))+8 ,28, 28, null);
                    
                     }
                     temp = true;

@@ -78,7 +78,7 @@ public class Entities {
     }
 
     public void drawEnt(Graphics g2d){
-        g2d.drawImage(new ImageIcon(s).getImage(), x, y, w, h, null);
+        g2d.drawImage(new ImageIcon(s).getImage(), x, y, (w*3)/2, (h*3)/2, null);
     }
 
     public void moveEnt(){
