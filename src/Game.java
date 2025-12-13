@@ -167,7 +167,7 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 				Entities e = active.get(i);
 				
 				
-				if (e.isT()){
+				if (e.isT()&&b.proximity(g2d, e)){
 
 					g2d.drawImage(new ImageIcon("assets/boxes/silverdbox.png").getImage(), ((wi/2) - 350), (hi - 258), 350*2, 108*2,this);
 
@@ -190,9 +190,13 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 						g2d.drawString((dialogueList.get(0)), (wi/2) - 325, (hi - 180));
 					}	
 						
+					} else{
+						setDialogue();
+								e.setA(true);
+								e.setT(false);
 					}
 					
-			}
+			} 
 		}
 	}
 
@@ -276,17 +280,19 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 		
 		
 		// System.out.println(testDialogue.isaChoosing());
+
+		int bSpeed = 1;
 		if (key == 87){ // W
 			b.setDy(-1);
 
 		} else if (key == 83){ // S
-			b.setDy(1);
+			b.setDy(bSpeed);
 		} else if (key == 65){ // A
-			b.setDx(-1);
+			b.setDx(-bSpeed);
 			b.setS(b.getwL());
 
 		} else if (key == 68){ // D
-			b.setDx(1);
+			b.setDx(bSpeed);
 			b.setS(b.getwR());
 		}
 
