@@ -178,12 +178,18 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 					} 
 
 					if (dialogueList.size()<=1){
-						e.setT(false);
+						setDialogue();
 						e.setA(true);
-					}
-						setSpeaker();
-						g2d.drawString(speaker, (wi/2) - 325, hi - 200);
+						e.setT(false);
+					}else{
+						for (int j = 0; j < active.size(); j++) {
+							setSpeaker(active.get(j), dialogueList);
+						}		
+						System.out.println(speaker);
+						g2d.drawString(speaker, (wi/2) - 335, hi - 227);
 						g2d.drawString((dialogueList.get(0)), (wi/2) - 325, (hi - 180));
+					}	
+						
 					}
 					
 			}
@@ -207,25 +213,15 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 		}
 	}
 
-	public void setSpeaker(){
-		if (dialogueList.size()>0){
-			for (int j = 0; j < active.size(); j++) {
-				speaker = setSpeaker(active.get(j), dialogueList); // this removes the speaker from the beginning of the line
 
-			}	
-		}
-	}
-
-	private String setSpeaker(Entities e, ArrayList<String> dialogueList){
+	private void setSpeaker(Entities e, ArrayList<String> dialogueList){
 		String currentLine = dialogueList.get(0);
 		String temp;
 		if (currentLine.startsWith(e.getN())){
 			temp = e.getN();
+			speaker = e.getN();
 			dialogueList.set(0,currentLine.replace(e.getN(), ""));
-		} else {
-			temp = "";
-		}
-		return temp;
+		} 
 	}
 
 	private void drawScreens(Graphics g2d){
